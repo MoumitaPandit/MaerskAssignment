@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+#One-1
+{background-color:#6F98A8;}
+#two-2
+{background-color:#2B8EAD ;}
+#three-3
+{background-color:#2F454E;}
+#four-4
+{background-color:#2B8EAD;}
+#five-5
+{background-color:#2F454E;}
+#six-6
+{background-color:#BFBFBF;}
+#seven-7
+{background-color:#BFBFBF;}
+#eight-8
+{background-color:#6F98A8;}
+#nine-9
+{background-color:#2F454E;}
+
+
+.myItems{
+text-align:center;
+color:#FFFFFF;
+font-size:100px;
+flex:1 0 33%;
+min-height:25vh;
+}
+
+.button {
+background-color: #72C3DC;
+width:60%;
+border-radius: 6px;
+height: 30px;
+color:#FFFFFF;
+border:none;
+box-shadow: 0 8px 2px -2px #2B8EAD;
+}
+
+.topDiv{
+background-color:#EFEFEF; 
+box-shadow: 2px -2px 4px 0 grey
+}
+
+.heading{
+font-weight: bold;
+text-align:center;
+padding-bottom: 10px
+}
+
+aside {
+width: 20%;
+padding-top:30px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+float: right;
+gap: 1px;}
+
+section {
+display:flex;
+flex-flow:row wrap;
+gap: 0px;
+justify-content: center;
+}
+
+@media screen and (max-width:375px)  
+{
+
+.heading{
+padding-top:2%;
+padding-bottom:2%; 
+background-color:#333333;
+color:#FFFFFF;
+}
+
+section{
+gap: 5px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+}
+
+.myItems{
+width: 90%;
+color:#000000;
+min-height:5vh;
+font-size:20px;
+padding-top:2%;
+justify-content: center;
+}
+
+aside{
+ width: 100%;
+ float: none;
+ padding-top:2px;
+ padding-bottom: 7px;
+ flex-direction: row;
+ gap: 5px;
+ justify-content: center;
+}
+
+.button {width:20%;}
+
+.topDiv{background-color:#FFFFFF;box-shadow: none;}
+.frame{border-style:solid; border-width: 6px;}
+
+#One-1  
+{ border-left-color: #6F98A8;background-color:#EFEFEF ;border-left-width: 10px; border-left-style:solid;}
+#two-2
+{border-left-color:#2B8EAD ;background-color:#EFEFEF;border-left-width: 10px; border-left-style:solid;}
+#three-3
+{border-left-color:#2F454E;background-color:#EFEFEF;border-left-width: 10px; border-left-style:solid;}
+#four-4
+{border-left-color:#2B8EAD;background-color:#EFEFEF;border-left-width: 10px; border-left-style:solid;}
+#five-5
+{border-left-color:#2F454E;background-color:#EFEFEF;border-left-width: 10px; border-left-style:solid;}
+#six-6
+{border-left-color:#BFBFBF;background-color:#EFEFEF;border-left-width: 10px; border-left-style:solid;}
+#seven-7
+{border-left-color:#BFBFBF;background-color:#EFEFEF;border-left-width: 10px; border-left-style:solid;}
+#eight-8
+{border-left-color:#6F98A8;background-color:#EFEFEF;border-left-width: 10px; border-left-style:solid;}
+#nine-9
+{border-left-color:#2F454E;background-color:#EFEFEF;border-left-width: 10px; border-left-style:solid;}
+}
+
+
+</style>
+</head>
+<body>
+<div class=frame>  
+<div class=heading>Shuffle and Sort</div>
+
+<div class=topDiv>
+<aside >
+<button type="button" id=shuffle class=button onclick="toSortShuffle(event)">SHUFFLE</button>
+<br>
+<br>
+<button type="button" id=sort class=button onclick="toSortShuffle(event)" >SORT</button>
+</aside>
+
+<section id="container">
+<div id=One-1 class="myItems">1</div>
+<div id=two-2 class="myItems">2</div>
+<div id=three-3 class="myItems">3</div>
+<div id=four-4 class="myItems">4</div>
+<div id=five-5 class="myItems">5</div>
+<div id=six-6 class="myItems">6</div>
+<div id=seven-7 class="myItems">7</div>
+<div id=eight-8 class="myItems">8</div>
+<div id=nine-9 class="myItems">9</div>
+</section>
+
+<div style="font-style:italic;font-weight: bold;text-align:center;padding-top:20px; padding-bottom: 50px">
+Shuffle and sort by Moumita
+</div>
+
+</div>
+</div>
+
+<script type="text/javascript">
+
+function shuffleArray(array){
+for(var i=array.length-1;i>0;i--){
+var j=Math.floor(Math.random()*(i+1));
+var temp=array[i];
+array[i]=array[j];
+array[j]=temp;
+}
+return array;
+}
+
+function sortArray(array)
+{
+array.sort(function(a,b)
+{
+var aord=+a.id.split('-')[1];
+var bord=+b.id.split('-')[1];
+return aord-bord;
+});
+}
+
+function toSortShuffle(event)
+{
+var container=document.getElementById("container");
+var elementsArray=Array.prototype.slice.call(container.getElementsByClassName('myItems'));
+elementsArray.forEach(function(element){
+container.removeChild(element);
+})
+
+var action =event.toElement.id
+
+if(action=="sort")
+sortArray(elementsArray);
+else if(action=="shuffle")
+shuffleArray(elementsArray);
+
+elementsArray.forEach(function(element){
+container.appendChild(element);
+})
+}
+
+
+</script>
+</body>
+</html>
